@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>LV导航站</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system}
+html,body{height:100%;overflow:hidden;background:#000;color:#fff}
+.page-wrap{width:100%;height:100%;position:relative}
+.page{width:100%;height:100%;position:absolute;top:0;left:0;padding:20px 16px;display:flex;flex-direction:column}
+
+/* 引导页默认显示 */
+.page1{z-index:2;justify-content:center;align-items:center;cursor:pointer}
+
+/* 主页初始隐藏 */
+.page2{
+    z-index:1;
+    display:none;
+    flex-direction:column;
+    padding-top:20px;
+    padding-bottom:20px;
+    height:100vh;
+}
+
+.time-text{
+    position:relative;
+    text-align:center;
+    font-size:18px;
+    letter-spacing:1px;
+    padding-top:20px;
+}
+
+.rainbow-text{
+    background: linear-gradient(90deg,#ff4444,#ffbb44,#44dd88,#44aaff,#bb77ff,#ff4444);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:rainbow 4s linear infinite;
+}
+
+@keyframes rainbow{
+    0%{background-position:0% center}
+    100%{background-position:200% center}
+}
+
+.card-box{
+    background:#181818;
+    padding:30px 24px;
+    border-radius:16px;
+    box-shadow:0 0 30px #4477ff40
+}
+
+.line-text{
+    font-size:26px;
+    text-align:center;
+    margin:14px 0;
+    font-weight:500
+}
+
+/* 头像容器：保证正圆 */
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid #ffffff;
+    background:#000;
+    margin:35px auto;
+    flex-shrink:0;
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    background:#000;
+}
+
+.site-name{
+    font-size:32px;
+    font-weight:bold;
+    text-align:center
+}
+
+.site-desc{
+    color:#888;
+    font-size:15px;
+    margin:8px 0 25px;
+    text-align:center
+}
+
+/* 按钮组缩小 */
+.btn-group{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    width:68%;
+    max-width:280px;
+    margin:0 auto
+}
+
+.func-btn{
+    border:2px solid #fff;
+    background:transparent;
+    color:#fff;
+    padding:9px 8px;
+    border-radius:999px;
+    font-size:15px;
+    text-align:center;
+}
+
+/* 底部功能栏缩小 */
+.footer-text{
+    text-align:center;
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:auto;
+    padding-bottom:10px;
+}
+
+.copy-text{
+    margin-top:8px;
+    font-size:11px;
+}
+</style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 第一页引导 -->
+    <div class="page page1" id="page1">
+        <div class="time-text" id="time1">北京时间：2026-06-20 22:05:09</div>
+        <div class="card-box">
+            <div class="line-text rainbow-text">受尽冷眼，只为出人头地</div>
+            <div class="line-text rainbow-text">欢迎光临LV数据号</div>
+            <div class="line-text rainbow-text" style="margin-top:28px">点击屏幕访问</div>
+        </div>
+        <div class="copy-text" style="position:absolute;bottom:30px;left:0;right:0;text-align:center;color:#888">© 2025 LV导航官网. All rights reserved.</div>
+    </div>
+
+    <!-- 第二页主页 -->
+    <div class="page page2" id="page2">
+        <div class="time-text" id="time2">北京时间：2026-06-20 22:05:09</div>
+
+        <!-- 头像区域：正圆显示 -->
+        <div class="avatar">
+            <img src="https://i.ibb.co/zVRBLxmr/IMG-2249.jpg" alt="头像">
+        </div>
+
+        <div class="site-name rainbow-text">LV导航站</div>
+        <div class="site-desc">质量 | 实惠 | 靠谱</div>
+
+        <div class="btn-group">
+            <div class="func-btn" onclick="window.open('https://yyy748721.github.io/yy/','_blank')">发卡网地址</div>
+            <div class="func-btn" onclick="window.open('https://yyy748721.github.io/-/','_blank')">iOS设备上号器</div>
+           <div class="func-btn" onclick="window.open('https://yyy748721.github.io/y/','_blank')">iOS设备禁用器</div>
+            <div class="func-btn" onclick="window.open('https://yyy748721.github.io/-/','_blank')">订单查询</div>
+        </div>
+
+        <div class="footer-text">
+            诚信经营<br>只为更好的服务
+            <div class="copy-text">© 2025 LV导航官网. All rights reserved.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+// 实时时间
+function updateTime(){
+    let now = new Date();
+    let year = now.getFullYear();
+    let mon = String(now.getMonth()+1).padStart(2,'0');
+    let day = String(now.getDate()).padStart(2,'0');
+    let h = String(now.getHours()).padStart(2,'0');
+    let m = String(now.getMinutes()).padStart(2,'0');
+    let s = String(now.getSeconds()).padStart(2,'0');
+    let timeStr = `北京时间：${year}-${mon}-${day} ${h}:${m}:${s}`;
+    document.getElementById('time1').innerText = timeStr;
+    document.getElementById('time2').innerText = timeStr;
+}
+updateTime();
+setInterval(updateTime,1000);
+
+// 点击切换页面
+document.getElementById('page1').addEventListener('click',()=>{
+    document.getElementById('page1').style.display = 'none';
+    document.getElementById('page2').style.display = 'flex';
+})
+</script>
+</body>
+</html>
